@@ -1,0 +1,17 @@
+name: Main workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call subworkflow
+        uses: ./subworkflow.yml
+
+      - name: Print "Goodbye, world!"
+        run: echo "Goodbye, world!"
