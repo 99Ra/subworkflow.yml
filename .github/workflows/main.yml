@@ -1,17 +1,14 @@
-name: Main workflow
-
-on:
-  push:
-    branches:
-      - main
+version: 2.1
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  hello-job:
+    docker:
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
     steps:
-      - name: Call subworkflow
-        uses: ./subworkflow.yml
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
 
-      - name: Print "Goodbye, world!"
-        run: echo "Goodbye, world!"
+workflows:
+  my-workflow:
+    jobs:
+      - hello-job
